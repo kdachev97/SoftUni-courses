@@ -10,7 +10,7 @@ function legendaryFarming(string) {
 
   let itemsArray = ['shards', 'fragments', 'motes'];
 
-  for (let i = 0; i < elements.length; i += 2) {
+  for (let i = 0; i < elements.length - 1; i += 2) {
     let quantity = elements[i];
     let material = (elements[i + 1]).toLowerCase();
 
