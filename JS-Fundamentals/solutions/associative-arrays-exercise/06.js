@@ -1,19 +1,21 @@
-function wordOccurrences(array) {
-  let result = {};
+function companyUsers(array) {
+  let companyList = {};
 
   for (let tokens of array) {
-    let word = tokens.split(', ');
+    let [companyName, userId] = tokens.split(' -> ');
 
-    if (result.hasOwnProperty(word)) {
-      result[word]++;
-    } else {
-      result[word] = 1;
+    if (!companyList.hasOwnProperty(companyName)) {
+      companyList[companyName] = [];
+    }
+
+    if (!companyList[companyName].includes(userId)) {
+      companyList[companyName].push(userId);
     }
   }
 
-  let sortedByCount = Object.keys(result)
-    .sort((a, b) => result[b] - result[a])
-    .map(key => `${key} -> ${result[key]} times`);
+  let sortByName = Object.keys(companyList)
+    .sort((a, b) => a.localeCompare(b))
+    .map(key => `${key} \n -- ${companyList[key].join(' \n -- ')}`);
 
-  console.log(sortedByCount.join('\n'));
+  console.log(sortByName.join('\n'));
 }

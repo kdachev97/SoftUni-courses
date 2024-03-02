@@ -1,17 +1,23 @@
-function addressBook(array) {
-  let book = {};
-  let unsortedAddressBook = [];
+function piccolo(commands) {
+  let cars = [];
 
-  array.forEach(entry => {
-    let [name, address] = entry.split(':');
+  for (let command of commands) {
+    let [direction, carNumber] = command.split(', ');
 
-    book[name] = address;
-  });
-
-  for (key in book) {
-    unsortedAddressBook.push(`${key} -> ${book[key]}`);
+    if (direction === "IN") {
+      if (!cars.includes(carNumber)) {
+        cars.push(carNumber);
+      }
+    } else {
+      if (cars.includes(carNumber)) {
+        cars.splice(cars.indexOf(carNumber), 1);
+      }
+    }
   }
-
-  let sortedAddressBook = unsortedAddressBook.sort((a, b) => a.localeCompare(b));
-  console.log(sortedAddressBook.join('\n'))
+  let sortedCars = cars.sort((a, b) => a.localeCompare(b));
+  if (sortedCars.length > 0) {
+    console.log(sortedCars.join('\n'));
+  } else {
+    console.log('Parking Lot is Empty');
+  }
 }

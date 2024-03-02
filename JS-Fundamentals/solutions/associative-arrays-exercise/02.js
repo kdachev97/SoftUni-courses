@@ -1,20 +1,21 @@
-function meetings(appointments) {
-  let schedule = {};
-  let successfulMeetings = [];
+function oddOccurences(string) {
+  let occurences = {};
+  let listOfStrings = string.split(' ');
 
-  appointments.forEach(appointment => {
-    let [day, name] = appointment.split(' ');
-
-    if (schedule[day]) {
-      console.log(`Conflict on ${day}!`);
+  for (let string of listOfStrings) {
+    let stringToLower = string.toLowerCase();
+    if (!occurences.hasOwnProperty(stringToLower)) {
+      occurences[stringToLower] = 1;
     } else {
-      schedule[day] = name;
-      console.log(`Scheduled for ${day}`);
-      successfulMeetings.push(`${day} -> ${name}`);
+      occurences[stringToLower]++;
     }
-  });
+  }
+  let result = [];
+  for (let [key, value] of Object.entries(occurences)) {
+    if (value % 2 !== 0) {
+      result.push(key);
+    }
+  };
 
-  successfulMeetings.forEach(meeting => {
-    console.log(meeting);
-  });
+  console.log(result.join(' '));
 }
