@@ -9,8 +9,6 @@ function race(input) {
     racers[name] = 0;
   }
 
-
-
   while (input[0] !== 'end of race') {
     let line = input.shift();
 
